@@ -13,5 +13,8 @@ namespace Common.Interfaces
     {
         [OperationContract]
         User UlogujKorisnika(string username, string password);
+
+        [OperationContract]
+        bool AddUser(User newUser);
     }
 }

@@ -35,7 +35,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml" />
@@ -56,9 +65,20 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Command\AddNewUserCommand.cs" />
     <Compile Include="Command\ClientCommand.cs" />
     <Compile Include="Command\LoginCommand.cs" />
+    <Compile Include="ViewModel\HomeVM.cs" />
     <Compile Include="ViewModel\LoginVM.cs" />
+    <Compile Include="View\HomeAdmin.xaml.cs">
+      <DependentUpon>HomeAdmin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\HomeBasic.xaml.cs">
+      <DependentUpon>HomeBasic.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\HomeView.xaml.cs">
+      <DependentUpon>HomeView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
@@ -75,6 +95,18 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\HomeAdmin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\HomeBasic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\HomeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -98,6 +130,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

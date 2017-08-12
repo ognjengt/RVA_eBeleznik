@@ -31,30 +31,35 @@ namespace Server.Access
 
         public User UlogujKorisnika(string username, string password)
         {
-            string user = username;
-            string pass = password;
-            using (var access = new AccessDB())
+            using(var access = new AccessDB())
             {
-                var query = from b in access.Users
-                            where b.Username == user
-                            select b;
+                var users = access.Users;
 
-                if (query.Any())
+                foreach (var user in users)
                 {
-                    query = from b in access.Users
-                            where b.Password == pass
-                            select b;
-
-                    if (query.Any())
+                    if (user.Username == username && user.Password == password)
                     {
-                        Console.WriteLine("Korisnik " + user + " je pronadjen");
-                        return new User(username,password);
+                        return user;
                     }
                 }
+            }
+            return null;
+        }
 
-                Console.WriteLine("Korisnik " + user + " nije pronadjen");
-                return null;
+        public bool AddUser(User newUser)
+        {
+            using (var access = new AccessDB())
+            {
+                access.Users.Add(newUser);
+                int uspesno = access.SaveChanges();
+
+                if (uspesno > 0)
+                {
+                    return true;
+                }
+                else return false;
             }
         }
+
     }
 }

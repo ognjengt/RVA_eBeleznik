@@ -2,10 +2,12 @@
 using Server.Access;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
+using Common.Data;
 
 namespace Server
 {
@@ -15,6 +17,20 @@ namespace Server
 
         static void Main(string[] args)
         {
+            string path = Directory.GetCurrentDirectory();
+            path = path.Substring(0, path.LastIndexOf("bin")) + "Database";
+            Console.WriteLine(path);
+            AppDomain.CurrentDomain.SetData("DataDirectory", path);
+
+            //UserDB.Instance.AddUser(new User() {
+            //    Username = "admin",
+            //    Password = "admin",
+            //    Ime = "Admin",
+            //    Prezime = "Adminski",
+            //    Admin = true,
+            //    Grupe = ""
+            //});
+
             serviceHost = new ServiceHost(typeof(UserDB));
             var binding1 = new NetTcpBinding();
             binding1.TransactionFlow = true;
