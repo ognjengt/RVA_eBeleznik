@@ -27,6 +27,7 @@ namespace Client.ViewModel
             proxyKorisnik = factory.CreateChannel();
         }
 
+        // Uopste ni ne treba, za sad, mozda nesto za kasnije
         public void OnPropertyChanged(PropertyChangedEventArgs e)
         {
             if (PropertyChanged != null)

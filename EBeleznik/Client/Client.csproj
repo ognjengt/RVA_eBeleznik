@@ -65,16 +65,22 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Command\AddNewBeleskaCommand.cs" />
     <Compile Include="Command\AddNewUserCommand.cs" />
+    <Compile Include="Command\BeleskaCommand.cs" />
+    <Compile Include="Command\OpenDialogs\OpenAddNewBeleskaDialogCommand.cs" />
+    <Compile Include="Command\OpenDialogs\OpenAddNewUserDialogCommand.cs" />
     <Compile Include="Command\ClientCommand.cs" />
     <Compile Include="Command\LoginCommand.cs" />
+    <Compile Include="ViewModel\AddNewBeleskaVM.cs" />
+    <Compile Include="ViewModel\AddNewUserVM.cs" />
     <Compile Include="ViewModel\HomeVM.cs" />
     <Compile Include="ViewModel\LoginVM.cs" />
-    <Compile Include="View\HomeAdmin.xaml.cs">
-      <DependentUpon>HomeAdmin.xaml</DependentUpon>
+    <Compile Include="View\AddNewBeleskaView.xaml.cs">
+      <DependentUpon>AddNewBeleskaView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\HomeBasic.xaml.cs">
-      <DependentUpon>HomeBasic.xaml</DependentUpon>
+    <Compile Include="View\AddNewUserView.xaml.cs">
+      <DependentUpon>AddNewUserView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
@@ -95,11 +101,11 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="View\HomeAdmin.xaml">
+    <Page Include="View\AddNewBeleskaView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\HomeBasic.xaml">
+    <Page Include="View\AddNewUserView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

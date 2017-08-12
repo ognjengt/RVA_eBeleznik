@@ -1,4 +1,6 @@
 ﻿using Client.Command;
+using Client.Command.OpenDialogs;
+using Common;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,11 +14,14 @@ namespace Client.ViewModel
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public string showAdmin { get; set; }
+        public string showIfAdmin { get; set; }
+        public string usernameText { get; set; }
 
         // Komande
-        public AddNewUserCommand addNewUserCommand { get; set; }
+        public OpenAddNewUserDialogCommand openAddNewUserDialogCommand { get; set; }
+        public OpenAddNewBeleskaDialogCommand openAddNewBeleskaDialogCommand { get; set; }
 
+        // Uopste ni ne treba, za sad, mozda nesto za kasnije
         public void OnPropertyChanged(PropertyChangedEventArgs e)
         {
             if (PropertyChanged != null)
@@ -27,9 +32,19 @@ namespace Client.ViewModel
 
         public HomeVM()
         {
-            this.addNewUserCommand = new AddNewUserCommand();
+            this.openAddNewUserDialogCommand = new OpenAddNewUserDialogCommand();
+            this.openAddNewBeleskaDialogCommand = new OpenAddNewBeleskaDialogCommand();
+            this.usernameText = Globals.currentUser.Ime+ " " +Globals.currentUser.Prezime;
 
-            // ako je Globals.currentUser.admin == true
+            if (Globals.currentUser.Admin)
+            {
+                showIfAdmin = "Visible";
+            }
+            else showIfAdmin = "Hidden";
+
+
+            // Konekcija na beleske i klijenta
+
         }
     }
 }

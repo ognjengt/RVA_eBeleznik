@@ -22,12 +22,13 @@ namespace Server
             Console.WriteLine(path);
             AppDomain.CurrentDomain.SetData("DataDirectory", path);
 
-            //UserDB.Instance.AddUser(new User() {
-            //    Username = "admin",
-            //    Password = "admin",
-            //    Ime = "Admin",
-            //    Prezime = "Adminski",
-            //    Admin = true,
+            //UserDB.Instance.AddUser(new User()
+            //{
+            //    Username = "ognjen",
+            //    Password = "123",
+            //    Ime = "Ognjen",
+            //    Prezime = "Gatalo",
+            //    Admin = false,
             //    Grupe = ""
             //});
 

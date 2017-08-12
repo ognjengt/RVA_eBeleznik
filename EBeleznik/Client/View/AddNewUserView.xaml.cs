@@ -11,20 +11,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Client.View
 {
     /// <summary>
-    /// Interaction logic for HomeAdmin.xaml
+    /// Interaction logic for AddNewUserView.xaml
     /// </summary>
-    public partial class HomeAdmin : UserControl
+    public partial class AddNewUserView : Window
     {
-        public HomeAdmin()
+        public AddNewUserView()
         {
             InitializeComponent();
-            DataContext = new HomeVM();
+            DataContext = new AddNewUserVM(this);
         }
     }
 }

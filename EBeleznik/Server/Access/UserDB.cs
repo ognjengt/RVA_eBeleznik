@@ -48,8 +48,17 @@ namespace Server.Access
 
         public bool AddUser(User newUser)
         {
+            // provera da li taj user vec postoji
             using (var access = new AccessDB())
             {
+                var users = access.Users;
+                foreach (var user in users)
+                {
+                    if (user.Username == newUser.Username)
+                    {
+                        return false;
+                    }
+                }
                 access.Users.Add(newUser);
                 int uspesno = access.SaveChanges();
 

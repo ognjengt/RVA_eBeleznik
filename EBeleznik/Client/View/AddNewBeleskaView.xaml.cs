@@ -11,20 +11,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Client.View
 {
     /// <summary>
-    /// Interaction logic for HomeBasic.xaml
+    /// Interaction logic for AddNewBeleskaView.xaml
     /// </summary>
-    public partial class HomeBasic : UserControl
+    public partial class AddNewBeleskaView : Window
     {
-        public HomeBasic()
+        public AddNewBeleskaView()
         {
             InitializeComponent();
-            DataContext = new HomeVM();
+            DataContext = new AddNewBeleskaVM(this);
         }
     }
 }

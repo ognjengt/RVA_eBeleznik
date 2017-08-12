@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\Beleska.cs" />
     <Compile Include="Data\User.cs" />
     <Compile Include="Globals.cs" />
     <Compile Include="Interfaces\IUserDB.cs" />
