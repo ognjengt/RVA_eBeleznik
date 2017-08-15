@@ -20,10 +20,10 @@ namespace Client.View
     /// </summary>
     public partial class AddNewBeleskaView : Window
     {
-        public AddNewBeleskaView()
+        public AddNewBeleskaView(HomeVM homeVm)
         {
             InitializeComponent();
-            DataContext = new AddNewBeleskaVM(this);
+            DataContext = new AddNewBeleskaVM(this, homeVm);
         }
     }
 }

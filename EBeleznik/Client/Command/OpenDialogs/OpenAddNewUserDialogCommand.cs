@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Client.Command.OpenDialogs
 {
-    class OpenAddNewUserDialogCommand : ClientCommand
+    public class OpenAddNewUserDialogCommand : ClientCommand
     {   
         public override void Execute(object parameter)
         {

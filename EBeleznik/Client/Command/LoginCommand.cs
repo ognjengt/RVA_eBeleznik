@@ -10,6 +10,7 @@ using System.ServiceModel;
 using Common;
 using Common.Interfaces;
 using Common.Data;
+using System.Windows;
 
 namespace Client.Command
 {
@@ -50,6 +51,10 @@ namespace Client.Command
 
                 MainWindow.glavni.Close();
                 hw.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Korisnik sa ovim kredencijalima, ne postoji", "Neuspeh");
             }
         }
     }

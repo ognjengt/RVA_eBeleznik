@@ -13,5 +13,6 @@ namespace Server.Access
         public AccessDB() : base("dbConnection2015") { Database.SetInitializer(new MigrateDatabaseToLatestVersion<AccessDB, Configuration>()); }
 
         public DbSet<User> Users { get; set; }
+        public DbSet<Beleska> Beleske { get; set; }
     }
 }

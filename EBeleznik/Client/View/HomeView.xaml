@@ -7,6 +7,7 @@
         xmlns:view="clr-namespace:Client.View"
         mc:Ignorable="d"
         Title="EBeleznik" Height="600" Width="500">
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="28*"/>
@@ -23,7 +24,9 @@
         <Button x:Name="button1" Content="Izmeni podatke" HorizontalAlignment="Left" Margin="188,95,0,0" VerticalAlignment="Top" Width="129" Grid.ColumnSpan="2"/>
         <Button x:Name="button_Copy5" Visibility="{Binding Path=showIfAdmin}" Command="{Binding openAddNewUserDialogCommand}" Content="Dodaj korisnika" HorizontalAlignment="Left" Margin="64,181,0,0" VerticalAlignment="Top" Width="98" Height="25" Grid.Column="1"/>
         <Button x:Name="button_Copy6" Visibility="{Binding Path=showIfAdmin}" Content="Izmeni korisnika" HorizontalAlignment="Left" Margin="175,181,0,0" VerticalAlignment="Top" Width="98" Height="25" Grid.Column="1"/>
-        <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Margin="31,281,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="260" Width="431"/>
+        <ListBox x:Name="listBox" ItemsSource="{Binding Path=ListaNazivaBeleski, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="268" Margin="31,250,0,0" VerticalAlignment="Top" Width="431" Grid.ColumnSpan="2">
+            
+        </ListBox>
 
 
     </Grid>

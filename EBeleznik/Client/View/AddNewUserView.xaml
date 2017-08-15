@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Client.View"
         xmlns:converter="clr-namespace:Client.Converter"
         mc:Ignorable="d"
-        Title="AddNewUserView" Height="348.943" Width="377.039">
+        Title="AddNewUserView" Height="368.954" Width="377.039">
 
     <Window.Resources>
         <converter:MultiCloneConverter x:Key="multiCloner"/>
@@ -23,16 +23,22 @@
         <Label x:Name="label1_Copy2" Content="Sifra" HorizontalAlignment="Left" Margin="46,187,0,0" VerticalAlignment="Top" Width="90"/>
         <TextBox x:Name="tbPassword" HorizontalAlignment="Left" Height="23" Margin="125,190,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="205"/>
         <Label x:Name="label2" Content="Grupe" HorizontalAlignment="Left" Margin="46,226,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="button" Content="Dodaj" Command="{Binding addNewUserCommand}" HorizontalAlignment="Left" Margin="255,278,0,0" VerticalAlignment="Top" Width="75">
+        <Button x:Name="button" Content="Dodaj" Command="{Binding addNewUserCommand}" HorizontalAlignment="Left" Margin="255,300,0,0" VerticalAlignment="Top" Width="75">
             <Button.CommandParameter>
                 <MultiBinding Converter="{StaticResource multiCloner}">
                     <Binding Path="Text" ElementName="tbUsername"/>
                     <Binding Path="Text" ElementName="tbIme"/>
                     <Binding Path="Text" ElementName="tbPrezime"/>
                     <Binding Path="Text" ElementName="tbPassword"/>
+                    <Binding Path="IsChecked" ElementName="cbSport"/>
+                    <Binding Path="IsChecked" ElementName="cbNauka"/>
+                    <Binding Path="IsChecked" ElementName="cbProgramiranje"/>
                 </MultiBinding>
             </Button.CommandParameter>
         </Button>
+        <CheckBox x:Name="cbSport" Content="Sport" HorizontalAlignment="Left" Margin="46,266,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="cbNauka" Content="Nauka" HorizontalAlignment="Left" Margin="140,266,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="cbProgramiranje" Content="Programiranje" HorizontalAlignment="Left" Margin="234,266,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

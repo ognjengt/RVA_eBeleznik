@@ -13,7 +13,8 @@ namespace Server
 {
     class Program
     {
-        private static ServiceHost serviceHost;
+        private static ServiceHost serviceHostKorisnik;
+        private static ServiceHost serviceHostBeleska;
 
         static void Main(string[] args)
         {
@@ -32,11 +33,18 @@ namespace Server
             //    Grupe = ""
             //});
 
-            serviceHost = new ServiceHost(typeof(UserDB));
+            serviceHostKorisnik = new ServiceHost(typeof(UserDB));
             var binding1 = new NetTcpBinding();
             binding1.TransactionFlow = true;
-            serviceHost.AddServiceEndpoint(typeof(IUserDB), binding1, new Uri("net.tcp://localhost:50000/UserConnection"));
-            serviceHost.Open();
+            serviceHostKorisnik.AddServiceEndpoint(typeof(IUserDB), binding1, new Uri("net.tcp://localhost:50000/UserConnection"));
+            serviceHostKorisnik.Open();
+
+            serviceHostBeleska = new ServiceHost(typeof(BeleskeDB));
+            var binding2 = new NetTcpBinding();
+            binding2.TransactionFlow = true;
+            serviceHostBeleska.AddServiceEndpoint(typeof(IBeleskeDB), binding2, new Uri("net.tcp://localhost:50001/BeleskeConnection"));
+            serviceHostBeleska.Open();
+
             Console.ReadKey();
         }
     }

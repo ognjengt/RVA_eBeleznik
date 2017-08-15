@@ -29,7 +29,7 @@ namespace Client.Command
             }
 
             Object[] parameters = parameter as Object[];
-            if (parameters == null || parameters.Length != 4)// promeniti, kad dodam grupe 
+            if (parameters == null || parameters.Length != 7)
             {
                 MessageBox.Show("Uneti parametri nisu validni", "Neuspeh");
                 return;
@@ -45,6 +45,21 @@ namespace Client.Command
                 }
             }
 
+            string grupe = "nijedna";
+
+            if ((bool)parameters[4] == true)
+            {
+                grupe += ";Sport";
+            }
+            if ((bool)parameters[5] == true)
+            {
+                grupe += ";Nauka";
+            }
+            if ((bool)parameters[6] == true)
+            {
+                grupe += ";Programiranje";
+            }
+
             bool success = viewModel.proxyKorisnik.AddUser(new User()
             {
                 Username = parameters[0].ToString(),
@@ -52,7 +67,7 @@ namespace Client.Command
                 Prezime = parameters[2].ToString(),
                 Password = parameters[3].ToString(),
                 Admin = false,
-                Grupe = ""
+                Grupe = grupe
             });
 
             if (success)

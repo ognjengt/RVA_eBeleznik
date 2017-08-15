@@ -35,5 +35,6 @@ namespace Client.ViewModel
                 PropertyChanged(this, e);
             }
         }
+
     }
 }
