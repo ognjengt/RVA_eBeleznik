@@ -22,12 +22,14 @@ namespace Client.ViewModel
         public List<Beleska> Beleske { get; set; }
 
         public List<string> ListaNazivaBeleski { get; set; }
+        public string Selektovana { get; set; }
 
         public IBeleskeDB proxyBeleske;
 
         // Komande
         public OpenAddNewUserDialogCommand openAddNewUserDialogCommand { get; set; }
         public OpenAddNewBeleskaDialogCommand openAddNewBeleskaDialogCommand { get; set; }
+        public OpenEditBeleskaDialogCommand openEditBeleskaDialogCommand { get; set; }
 
         // Uopste ni ne treba, za sad, mozda nesto za kasnije
         public void OnPropertyChanged(PropertyChangedEventArgs e)
@@ -45,7 +47,7 @@ namespace Client.ViewModel
             ListaNazivaBeleski = new List<string>();
             foreach (Beleska beleska in Beleske)
             {
-                ListaNazivaBeleski.Add(beleska.Naslov + " (" + beleska.Grupe.Substring(1) + ") ");
+                ListaNazivaBeleski.Add(beleska.Id+"-"+beleska.Naslov + " (" + beleska.Grupe.Substring(1) + ") ");
             }
             OnPropertyChanged(new PropertyChangedEventArgs("ListaNazivaBeleski"));
         }
@@ -54,6 +56,7 @@ namespace Client.ViewModel
         {
             this.openAddNewUserDialogCommand = new OpenAddNewUserDialogCommand();
             this.openAddNewBeleskaDialogCommand = new OpenAddNewBeleskaDialogCommand(this); // saljem ovaj VM, da bih mogao da refreshujem kasnije
+            this.openEditBeleskaDialogCommand = new OpenEditBeleskaDialogCommand(this); // i ovde kasnije slati da bi se moglo refreshovati
             this.usernameText = Globals.currentUser.Ime+ " " +Globals.currentUser.Prezime;
 
             if (Globals.currentUser.Admin)

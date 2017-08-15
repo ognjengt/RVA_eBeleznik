@@ -1,0 +1,42 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Client.View"
+        xmlns:Converter="clr-namespace:Client.Converter" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Class="Client.View.EditBeleskaView"
+        mc:Ignorable="d"
+        Title="EditBeleskaView" Height="444.109" Width="423.263">
+    <Window.Resources>
+        <Converter:MultiCloneConverter x:Key="multiCloner"/>
+    </Window.Resources>
+    <Grid>
+        <Label x:Name="label" Content="Izmena beleske" FontWeight="Bold" FontSize="15" HorizontalAlignment="Left" Margin="154,10,0,0" VerticalAlignment="Top"/>
+
+        <Label x:Name="label1" Content="Naslov" HorizontalAlignment="Left" Margin="31,49,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbNaslov" Text="{Binding BeleskaZaIzmenu.Naslov}" HorizontalAlignment="Left" Height="23" Margin="31,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="352"/>
+        <Label x:Name="label2" Content="Sadrzaj" HorizontalAlignment="Left" Margin="31,115,0,0" VerticalAlignment="Top"/>
+        <xctk:RichTextBox Text="{Binding BeleskaZaIzmenu.Sadrzaj, Mode=OneWayToSource}" x:Name="richTextBox" HorizontalAlignment="Left" Height="111" Margin="29,146,0,0" VerticalAlignment="Top" Width="354" RenderTransformOrigin="0.479,0.507"/>
+        <CheckBox x:Name="cbSport" IsChecked="{Binding sportChecked}" IsEnabled="{Binding sportEnabled}" Content="Sport" HorizontalAlignment="Left" Margin="31,311,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label3" Content="Grupe" HorizontalAlignment="Left" Margin="29,269,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="cbNauka" IsChecked="{Binding naukaChecked}" IsEnabled="{Binding naukaEnabled}" Content="Nauka" HorizontalAlignment="Left" Margin="133,311,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="cbProgramiranje" IsChecked="{Binding programiranjeChecked}" IsEnabled="{Binding programiranjeEnabled}" Content="Programiranje" HorizontalAlignment="Left" Margin="230,311,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="button" Command="{Binding editBeleskaCommand}" Content="Izmeni belesku" HorizontalAlignment="Left" Margin="287,353,0,-33" VerticalAlignment="Top" Width="96">
+            <Button.CommandParameter>
+                <MultiBinding Converter="{StaticResource multiCloner}">
+                    <Binding Path="Text" ElementName="tbNaslov"/>
+                    <Binding Path="Text" ElementName="richTextBox"/>
+                    <Binding Path="IsChecked" ElementName="cbSport"/>
+                    <Binding Path="IsChecked" ElementName="cbNauka"/>
+                    <Binding Path="IsChecked" ElementName="cbProgramiranje"/>
+                </MultiBinding>
+            </Button.CommandParameter>
+        </Button>
+        <ToolBar x:Name="toolBar" HorizontalAlignment="Left" Margin="187,115,0,0" VerticalAlignment="Top" Height="26" Width="196">
+            <ToggleButton Command="EditingCommands.ToggleBold" x:Name="btnBold" Content="Bold"/>
+            <ToggleButton Command="EditingCommands.ToggleItalic" x:Name="btnItalic" Content="Italic"/>
+            <ToggleButton Command="EditingCommands.ToggleUnderline" x:Name="btnUnderline" Content="Underline"/>
+        </ToolBar>
+
+    </Grid>
+</Window>

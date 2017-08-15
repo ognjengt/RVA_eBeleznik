@@ -16,5 +16,11 @@ namespace Common.Interfaces
 
         [OperationContract]
         List<Beleska> GetBeleskeByUser(User user);
+
+        [OperationContract]
+        Beleska GetBeleskaById(int id);
+
+        [OperationContract]
+        bool IzmeniBelesku(Beleska b);
     }
 }

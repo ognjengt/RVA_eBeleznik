@@ -47,6 +47,23 @@ namespace Server.Access
             }
         }
 
+        public Beleska GetBeleskaById(int id)
+        {
+            using (var access = new AccessDB())
+            {
+                var beleske = access.Beleske;
+
+                foreach (var beleska in beleske)
+                {
+                    if (beleska.Id == id)
+                    {
+                        return beleska;
+                    }
+                }
+            }
+            return null;
+        }
+
         public List<Beleska> GetBeleskeByUser(User user)
         {
             List<Beleska> listaZaVracanje = new List<Beleska>();
@@ -72,6 +89,31 @@ namespace Server.Access
             return listaZaVracanje;
         }
 
-
+        public bool IzmeniBelesku(Beleska b)
+        {
+            // TODO
+            return true;
+            //using (var access = new AccessDB())
+            //{
+            //    var beleske = access.Beleske;
+            //    foreach (var beleska in beleske)
+            //    {
+            //        if (beleska.Id == b.Id)
+            //        {
+            //            access.Beleske.Attach(b);
+            //            access.Entry(b).Property(x => x.Naslov).IsModified = true;
+            //            access.Entry(b).Property(x => x.Sadrzaj).IsModified = true;
+            //            access.Entry(b).Property(x => x.Grupe).IsModified = true;
+            //            int success = access.SaveChanges();
+            //            if (success > 0)
+            //            {
+            //                return true;
+            //            }
+            //            return false;
+            //        }
+            //    }
+            //}
+            //return true;
+        }
     }
 }

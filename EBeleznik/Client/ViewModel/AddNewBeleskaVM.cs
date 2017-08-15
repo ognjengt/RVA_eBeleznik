@@ -27,6 +27,7 @@ namespace Client.ViewModel
         public string sportEnabled { get; set; }
         public string naukaEnabled { get; set; }
         public string programiranjeEnabled { get; set; }
+        public string Selektovana { get; set; }
 
         public AddNewBeleskaVM(AddNewBeleskaView view, HomeVM homeVM)
         {
