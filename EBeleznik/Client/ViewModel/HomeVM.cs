@@ -30,8 +30,11 @@ namespace Client.ViewModel
         public OpenAddNewUserDialogCommand openAddNewUserDialogCommand { get; set; }
         public OpenAddNewBeleskaDialogCommand openAddNewBeleskaDialogCommand { get; set; }
         public OpenEditBeleskaDialogCommand openEditBeleskaDialogCommand { get; set; }
+        public OpenEditUserCommand openEditUserCommand { get; set; }
+        public DeleteBeleskaCommand deleteBeleskaCommand { get; set; }
+        public OpenEditGroupsCommand openEditGroupsCommand { get; set; }
+        public CloneBeleskaCommand cloneBeleskaCommand { get; set; }
 
-        // Uopste ni ne treba, za sad, mozda nesto za kasnije
         public void OnPropertyChanged(PropertyChangedEventArgs e)
         {
             if (PropertyChanged != null)
@@ -52,11 +55,22 @@ namespace Client.ViewModel
             OnPropertyChanged(new PropertyChangedEventArgs("ListaNazivaBeleski"));
         }
 
+        public void RefreshUserData()
+        {
+            this.usernameText = Globals.currentUser.Ime + " " + Globals.currentUser.Prezime;
+            OnPropertyChanged(new PropertyChangedEventArgs("usernameText"));
+        }
+
         public HomeVM()
         {
             this.openAddNewUserDialogCommand = new OpenAddNewUserDialogCommand();
             this.openAddNewBeleskaDialogCommand = new OpenAddNewBeleskaDialogCommand(this); // saljem ovaj VM, da bih mogao da refreshujem kasnije
             this.openEditBeleskaDialogCommand = new OpenEditBeleskaDialogCommand(this); // i ovde kasnije slati da bi se moglo refreshovati
+            this.openEditUserCommand = new OpenEditUserCommand(this); // da bi se moglo refeshovati
+            this.deleteBeleskaCommand = new DeleteBeleskaCommand(this);
+            this.openEditGroupsCommand = new OpenEditGroupsCommand();
+            this.cloneBeleskaCommand = new CloneBeleskaCommand(this);
+
             this.usernameText = Globals.currentUser.Ime+ " " +Globals.currentUser.Prezime;
 
             if (Globals.currentUser.Admin)

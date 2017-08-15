@@ -23,6 +23,7 @@ namespace Client.ViewModel
         public HomeVM homeVM;
         private int Id;
         public Beleska BeleskaZaIzmenu { get; set; }
+
         public string sportEnabled { get; set; }
         public string naukaEnabled { get; set; }
         public string programiranjeEnabled { get; set; }
@@ -85,6 +86,14 @@ namespace Client.ViewModel
                 programiranjeEnabled = "True";
             }
             else programiranjeEnabled = "False";
+        }
+
+        public void OnPropertyChanged(PropertyChangedEventArgs e)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, e);
+            }
         }
     }
 }

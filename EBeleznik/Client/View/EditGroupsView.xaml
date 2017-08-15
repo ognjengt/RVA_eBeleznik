@@ -1,0 +1,13 @@
+﻿<Window x:Class="Client.View.EditGroupsView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Client.View"
+        mc:Ignorable="d"
+        Title="EditGroupsView" Height="323.78" Width="340.244">
+    <Grid>
+        <Label x:Name="label" Content="Izmena grupa" FontWeight="Bold" FontSize="20" HorizontalAlignment="Left" Margin="93,10,0,0" VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Common.Data
 {
-    public class Beleska
+    public class Beleska : BeleskaPrototype
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -17,5 +17,14 @@ namespace Common.Data
         public string Sadrzaj { get; set; }
         public string Grupe { get; set; }
 
+        public override Beleska Clone()
+        {
+            Beleska clone = new Beleska();
+
+            clone.Naslov = this.Naslov;
+            clone.Sadrzaj = this.Sadrzaj;
+            clone.Grupe = this.Grupe;
+            return clone;
+        }
     }
 }

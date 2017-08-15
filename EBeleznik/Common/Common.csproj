@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\Beleska.cs" />
+    <Compile Include="Data\BeleskaPrototype.cs" />
     <Compile Include="Data\User.cs" />
     <Compile Include="Globals.cs" />
     <Compile Include="Interfaces\IBeleskeDB.cs" />

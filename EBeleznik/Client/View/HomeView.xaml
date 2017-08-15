@@ -16,15 +16,15 @@
         </Grid.ColumnDefinitions>
         <Button x:Name="button" Command="{Binding openAddNewBeleskaDialogCommand}" Content="Nova beleska" HorizontalAlignment="Left" Margin="31,143,0,0" VerticalAlignment="Top" Width="98" Height="25"/>
         <Label x:Name="label" FontSize="25" FontWeight="Bold" Content="EBeleznik" HorizontalAlignment="Left" Margin="188,10,0,0" VerticalAlignment="Top" Height="43" Width="129" Grid.ColumnSpan="2"/>
-        <Button x:Name="button_Copy" Content="Obrisi belesku" HorizontalAlignment="Left" Margin="142,143,0,0" VerticalAlignment="Top" Width="98" Height="25" Grid.ColumnSpan="2"/>
+        <Button x:Name="button_Copy" Command="{Binding deleteBeleskaCommand}" Content="Obrisi belesku" HorizontalAlignment="Left" Margin="142,143,0,0" VerticalAlignment="Top" Width="98" Height="25" Grid.ColumnSpan="2"/>
         <Button x:Name="button_Copy1" Command="{Binding openEditBeleskaDialogCommand}" Content="Izmeni belesku" HorizontalAlignment="Left" Margin="64,143,0,0" VerticalAlignment="Top" Width="98" Height="25" Grid.Column="1"/>
-        <Button x:Name="button_Copy2" Content="Dupliraj belesku" HorizontalAlignment="Left" Margin="175,143,0,0" VerticalAlignment="Top" Width="98" Height="25" Grid.Column="1"/>
+        <Button x:Name="button_Copy2" Command="{Binding cloneBeleskaCommand}" Content="Dupliraj belesku" HorizontalAlignment="Left" Margin="175,143,0,0" VerticalAlignment="Top" Width="98" Height="25" Grid.Column="1"/>
         <Button x:Name="button_Copy3" Content="Undo" HorizontalAlignment="Left" Margin="31,181,0,0" VerticalAlignment="Top" Width="98" Height="25"/>
         <Button x:Name="button_Copy4" Content="Redo" HorizontalAlignment="Left" Margin="142,181,0,0" VerticalAlignment="Top" Width="98" Height="25" Grid.ColumnSpan="2"/>
         <Label x:Name="label1" Content="{Binding Path=usernameText}" HorizontalAlignment="Left" Margin="10,66,0,0" VerticalAlignment="Top" Grid.Column="1"/>
-        <Button x:Name="button1" Content="Izmeni podatke" HorizontalAlignment="Left" Margin="188,95,0,0" VerticalAlignment="Top" Width="129" Grid.ColumnSpan="2"/>
+        <Button x:Name="button1" Command="{Binding openEditUserCommand}" Content="Izmeni podatke" HorizontalAlignment="Left" Margin="188,95,0,0" VerticalAlignment="Top" Width="129" Grid.ColumnSpan="2"/>
         <Button x:Name="button_Copy5" Visibility="{Binding Path=showIfAdmin}" Command="{Binding openAddNewUserDialogCommand}" Content="Dodaj korisnika" HorizontalAlignment="Left" Margin="64,181,0,0" VerticalAlignment="Top" Width="98" Height="25" Grid.Column="1"/>
-        <Button x:Name="button_Copy6" Visibility="{Binding Path=showIfAdmin}" Content="Izmeni korisnika" HorizontalAlignment="Left" Margin="175,181,0,0" VerticalAlignment="Top" Width="98" Height="25" Grid.Column="1"/>
+        <Button Command="{Binding openEditGroupsCommand}" x:Name="button_Copy6" Visibility="{Binding Path=showIfAdmin}" Content="Izmeni grupe" HorizontalAlignment="Left" Margin="175,181,0,0" VerticalAlignment="Top" Width="98" Height="25" Grid.Column="1"/>
         <ListBox x:Name="listBox" SelectedValue="{Binding Path=Selektovana}" ItemsSource="{Binding Path=ListaNazivaBeleski, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="268" Margin="31,250,0,0" VerticalAlignment="Top" Width="431" Grid.ColumnSpan="2">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseDoubleClick">

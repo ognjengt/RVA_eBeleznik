@@ -100,15 +100,22 @@
     <Compile Include="Command\AddNewBeleskaCommand.cs" />
     <Compile Include="Command\AddNewUserCommand.cs" />
     <Compile Include="Command\BeleskaCommand.cs" />
+    <Compile Include="Command\CloneBeleskaCommand.cs" />
+    <Compile Include="Command\DeleteBeleskaCommand.cs" />
     <Compile Include="Command\EditBeleskaCommand.cs" />
+    <Compile Include="Command\EditUserCommand.cs" />
     <Compile Include="Command\OpenDialogs\OpenAddNewBeleskaDialogCommand.cs" />
     <Compile Include="Command\OpenDialogs\OpenAddNewUserDialogCommand.cs" />
     <Compile Include="Command\ClientCommand.cs" />
     <Compile Include="Command\LoginCommand.cs" />
     <Compile Include="Command\OpenDialogs\OpenEditBeleskaDialogCommand.cs" />
+    <Compile Include="Command\OpenDialogs\OpenEditGroupsCommand.cs" />
+    <Compile Include="Command\OpenDialogs\OpenEditUserCommand.cs" />
     <Compile Include="ViewModel\AddNewBeleskaVM.cs" />
     <Compile Include="ViewModel\AddNewUserVM.cs" />
     <Compile Include="ViewModel\EditBeleskaVM.cs" />
+    <Compile Include="ViewModel\EditGroupsVM.cs" />
+    <Compile Include="ViewModel\EditUserVM.cs" />
     <Compile Include="ViewModel\HomeVM.cs" />
     <Compile Include="ViewModel\LoginVM.cs" />
     <Compile Include="View\AddNewBeleskaView.xaml.cs">
@@ -119,6 +126,12 @@
     </Compile>
     <Compile Include="View\EditBeleskaView.xaml.cs">
       <DependentUpon>EditBeleskaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EditGroupsView.xaml.cs">
+      <DependentUpon>EditGroupsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EditUserView.xaml.cs">
+      <DependentUpon>EditUserView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
@@ -148,6 +161,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\EditBeleskaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EditGroupsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EditUserView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

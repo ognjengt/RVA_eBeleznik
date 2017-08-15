@@ -16,5 +16,8 @@ namespace Common.Interfaces
 
         [OperationContract]
         bool AddUser(User newUser);
+
+        [OperationContract]
+        bool UpdateUser(User u);
     }
 }

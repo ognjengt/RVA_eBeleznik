@@ -22,5 +22,8 @@ namespace Common.Interfaces
 
         [OperationContract]
         bool IzmeniBelesku(Beleska b);
+
+        [OperationContract]
+        bool ObrisiBelesku(int id);
     }
 }

@@ -26,7 +26,7 @@ namespace Client.Command
             }
 
             Object[] parameters = parameter as Object[];
-            if (parameters == null || parameters.Length != 5)
+            if (parameters == null || parameters.Length != 6)
             {
                 MessageBox.Show("Uneti parametri nisu validni", "Neuspeh");
                 return;
@@ -48,16 +48,33 @@ namespace Client.Command
                 return;
             }
 
+            string grupe = "";
+            if ((bool)parameters[2] == true)
+            {
+                grupe += ";Sport";
+            }
+            if ((bool)parameters[3] == true)
+            {
+                grupe += ";Nauka";
+            }
+            if ((bool)parameters[4] == true)
+            {
+                grupe += ";Programiranje";
+            }
+
             bool uspesno = viewModel.proxyBeleske.IzmeniBelesku(new Beleska()
             {
+                Id = Int32.Parse(parameters[5].ToString()),
                 Naslov = parameters[0].ToString(),
                 Sadrzaj = parameters[1].ToString(),
-                Grupe = "Sport"
+                Grupe = grupe
             });
 
             if (uspesno)
             {
                 MessageBox.Show("Beleska uspesno izmenjena", "Uspeh");
+                viewModel.view.Close();
+                viewModel.homeVM.RefreshBeleske();
             }
             else MessageBox.Show("Beleska neuspesno izmenjena", "Neuspeh");
         }

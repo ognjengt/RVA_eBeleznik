@@ -70,5 +70,17 @@ namespace Server.Access
             }
         }
 
+        public bool UpdateUser(User u)
+        {
+            using (var access = new AccessDB())
+            {
+                User user = access.Users.First(x => x.Username == u.Username);
+                user.Ime = u.Ime;
+                user.Prezime = u.Prezime;
+                int i = access.SaveChanges();
+
+                return (i > 0 ? true : false);
+            }
+        }
     }
 }
