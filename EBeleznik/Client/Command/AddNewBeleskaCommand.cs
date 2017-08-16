@@ -1,4 +1,5 @@
 ﻿using Client.ViewModel;
+using Common;
 using Common.Data;
 using System;
 using System.Collections.Generic;
@@ -12,11 +13,14 @@ namespace Client.Command
     class AddNewBeleskaCommand : BeleskaCommand
     {
         private AddNewBeleskaVM viewModel;
+        private Beleska beleskaZaDodavanje;
 
         public AddNewBeleskaCommand(AddNewBeleskaVM viewModel)
         {
             this.viewModel = viewModel;
         }
+
+        public AddNewBeleskaCommand() { }
 
         public override void Execute(object parameter)
         {
@@ -67,14 +71,18 @@ namespace Client.Command
                 grupe += ";Programiranje";
             }
 
-            bool uspesnoDodato = viewModel.proxyBeleske.DodajBelesku(new Beleska()
+            beleskaZaDodavanje = new Beleska()
             {
                 Naslov = naslov,
                 Sadrzaj = sadrzaj,
                 Grupe = grupe
-            });
+            };
 
-            if (uspesnoDodato)
+            Beleska dodataBeleska = viewModel.proxyBeleske.DodajBelesku(beleskaZaDodavanje);
+            viewModel.homeVM.UndoHistory.Add(this);
+            Globals.listaBeleskiUndo.Add(dodataBeleska);
+
+            if (dodataBeleska != null)
             {
                 MessageBox.Show("Uspesno dodato!", "Uspeh");
                 viewModel.homeVM.RefreshBeleske();
@@ -82,6 +90,15 @@ namespace Client.Command
             }
             else MessageBox.Show("Neuspesno dodato!", "Neuspeh");
 
+        }
+
+        public override void UnExecute()
+        {
+            // Delete
+            viewModel.homeVM.proxyBeleske.ObrisiBelesku(Globals.listaBeleskiUndo[Globals.listaBeleskiUndo.Count - 1].Id);
+            viewModel.homeVM.RefreshBeleske();
+            viewModel.homeVM.RedoHistory.Add(this);
+            Globals.listaBeleskiRedo.Add(beleskaZaDodavanje);
         }
     }
 }

@@ -21,6 +21,8 @@ namespace Client.ViewModel
         public string usernameText { get; set; }
         public List<Beleska> Beleske { get; set; }
 
+        public List<BeleskaCommand> UndoHistory { get; set; }
+        public List<BeleskaCommand> RedoHistory { get; set; }
         public List<string> ListaNazivaBeleski { get; set; }
         public string Selektovana { get; set; }
 
@@ -34,6 +36,8 @@ namespace Client.ViewModel
         public DeleteBeleskaCommand deleteBeleskaCommand { get; set; }
         public OpenEditGroupsCommand openEditGroupsCommand { get; set; }
         public CloneBeleskaCommand cloneBeleskaCommand { get; set; }
+        public UndoCommand undoCommand { get; set; }
+        public RedoCommand redoCommand { get; set; }
 
         public void OnPropertyChanged(PropertyChangedEventArgs e)
         {
@@ -70,6 +74,11 @@ namespace Client.ViewModel
             this.deleteBeleskaCommand = new DeleteBeleskaCommand(this);
             this.openEditGroupsCommand = new OpenEditGroupsCommand();
             this.cloneBeleskaCommand = new CloneBeleskaCommand(this);
+            this.undoCommand = new UndoCommand(this);
+            this.redoCommand = new RedoCommand(this);
+
+            this.RedoHistory = new List<BeleskaCommand>();
+            this.UndoHistory = new List<BeleskaCommand>();
 
             this.usernameText = Globals.currentUser.Ime+ " " +Globals.currentUser.Prezime;
 

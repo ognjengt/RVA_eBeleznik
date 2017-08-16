@@ -20,5 +20,10 @@ namespace Client.Command.OpenDialogs
             EditBeleskaView ev = new EditBeleskaView(caller);
             ev.ShowDialog();
         }
+
+        public override void UnExecute()
+        {
+            
+        }
     }
 }

@@ -10,5 +10,7 @@ namespace Common
     public class Globals
     {
         public static User currentUser = new User();
+        public static List<Beleska> listaBeleskiUndo = new List<Beleska>();
+        public static List<Beleska> listaBeleskiRedo = new List<Beleska>();
     }
 }

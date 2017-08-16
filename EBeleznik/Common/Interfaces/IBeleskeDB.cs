@@ -12,7 +12,7 @@ namespace Common.Interfaces
     public interface IBeleskeDB
     {
         [OperationContract]
-        bool DodajBelesku(Beleska newBeleska);
+        Beleska DodajBelesku(Beleska newBeleska);
 
         [OperationContract]
         List<Beleska> GetBeleskeByUser(User user);

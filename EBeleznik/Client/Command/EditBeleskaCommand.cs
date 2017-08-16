@@ -78,5 +78,10 @@ namespace Client.Command
             }
             else MessageBox.Show("Beleska neuspesno izmenjena", "Neuspeh");
         }
+
+        public override void UnExecute()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

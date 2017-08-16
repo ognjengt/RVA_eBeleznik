@@ -111,6 +111,8 @@
     <Compile Include="Command\OpenDialogs\OpenEditBeleskaDialogCommand.cs" />
     <Compile Include="Command\OpenDialogs\OpenEditGroupsCommand.cs" />
     <Compile Include="Command\OpenDialogs\OpenEditUserCommand.cs" />
+    <Compile Include="Command\RedoCommand.cs" />
+    <Compile Include="Command\UndoCommand.cs" />
     <Compile Include="ViewModel\AddNewBeleskaVM.cs" />
     <Compile Include="ViewModel\AddNewUserVM.cs" />
     <Compile Include="ViewModel\EditBeleskaVM.cs" />

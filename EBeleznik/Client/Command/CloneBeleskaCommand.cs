@@ -21,14 +21,19 @@ namespace Client.Command
             int id = Int32.Parse(viewModel.Selektovana.Split('-')[0]);
             Beleska b = viewModel.proxyBeleske.GetBeleskaById(id);
             Beleska clone = b.Clone();
-            bool success = viewModel.proxyBeleske.DodajBelesku(clone);
+            Beleska dodataBeleska = viewModel.proxyBeleske.DodajBelesku(clone);
 
-            if (success)
+            if (dodataBeleska != null)
             {
                 MessageBox.Show("Beleska uspesno klonirana", "Uspeh");
                 viewModel.RefreshBeleske();
             }
             else MessageBox.Show("Beleska neuspesno klonirana", "Neuspeh");
+        }
+
+        public override void UnExecute()
+        {
+            throw new NotImplementedException();
         }
     }
 }

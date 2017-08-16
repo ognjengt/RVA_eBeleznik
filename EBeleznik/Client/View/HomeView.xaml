@@ -19,8 +19,8 @@
         <Button x:Name="button_Copy" Command="{Binding deleteBeleskaCommand}" Content="Obrisi belesku" HorizontalAlignment="Left" Margin="142,143,0,0" VerticalAlignment="Top" Width="98" Height="25" Grid.ColumnSpan="2"/>
         <Button x:Name="button_Copy1" Command="{Binding openEditBeleskaDialogCommand}" Content="Izmeni belesku" HorizontalAlignment="Left" Margin="64,143,0,0" VerticalAlignment="Top" Width="98" Height="25" Grid.Column="1"/>
         <Button x:Name="button_Copy2" Command="{Binding cloneBeleskaCommand}" Content="Dupliraj belesku" HorizontalAlignment="Left" Margin="175,143,0,0" VerticalAlignment="Top" Width="98" Height="25" Grid.Column="1"/>
-        <Button x:Name="button_Copy3" Content="Undo" HorizontalAlignment="Left" Margin="31,181,0,0" VerticalAlignment="Top" Width="98" Height="25"/>
-        <Button x:Name="button_Copy4" Content="Redo" HorizontalAlignment="Left" Margin="142,181,0,0" VerticalAlignment="Top" Width="98" Height="25" Grid.ColumnSpan="2"/>
+        <Button x:Name="button_Copy3" Command="{Binding undoCommand}" Content="Undo" HorizontalAlignment="Left" Margin="31,181,0,0" VerticalAlignment="Top" Width="98" Height="25"/>
+        <Button x:Name="button_Copy4" Command="{Binding redoCommand}" Content="Redo" HorizontalAlignment="Left" Margin="142,181,0,0" VerticalAlignment="Top" Width="98" Height="25" Grid.ColumnSpan="2"/>
         <Label x:Name="label1" Content="{Binding Path=usernameText}" HorizontalAlignment="Left" Margin="10,66,0,0" VerticalAlignment="Top" Grid.Column="1"/>
         <Button x:Name="button1" Command="{Binding openEditUserCommand}" Content="Izmeni podatke" HorizontalAlignment="Left" Margin="188,95,0,0" VerticalAlignment="Top" Width="129" Grid.ColumnSpan="2"/>
         <Button x:Name="button_Copy5" Visibility="{Binding Path=showIfAdmin}" Command="{Binding openAddNewUserDialogCommand}" Content="Dodaj korisnika" HorizontalAlignment="Left" Margin="64,181,0,0" VerticalAlignment="Top" Width="98" Height="25" Grid.Column="1"/>

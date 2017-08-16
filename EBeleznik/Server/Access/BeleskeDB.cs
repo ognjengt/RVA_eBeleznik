@@ -29,7 +29,7 @@ namespace Server.Access
             }
         }
 
-        public bool DodajBelesku(Beleska newBeleska)
+        public Beleska DodajBelesku(Beleska newBeleska)
         {
             using (var access = new AccessDB())
             {
@@ -38,11 +38,12 @@ namespace Server.Access
                 access.Beleske.Add(newBeleska);
                 int uspesno = access.SaveChanges();
 
+                List<Beleska> lista = beleske.ToList();
                 if (uspesno > 0)
                 {
-                    return true;
+                    return lista[lista.Count - 1];
                 }
-                else return false;
+                else return null;
                 
             }
         }
