@@ -66,20 +66,33 @@ namespace Client.Command
 
             // Proveri u bazi da li je izmenjena
             Beleska beleskaZaPoklapanje = viewModel.proxyBeleske.GetBeleskaById(viewModel.prvobitnaBeleska.Id);
-            if (beleskaZaPoklapanje.Naslov != viewModel.prvobitnaBeleska.Naslov || beleskaZaPoklapanje.Sadrzaj != viewModel.prvobitnaBeleska.Sadrzaj || beleskaZaPoklapanje.Grupe != viewModel.prvobitnaBeleska.Grupe)
+            if (beleskaZaPoklapanje.Naslov != viewModel.prvobitnaBeleska.Naslov || beleskaZaPoklapanje.Sadrzaj != viewModel.prvobitnaBeleska.Sadrzaj)
             {
                 ConflictView conflictV = new ConflictView(viewModel);
                 conflictV.ShowDialog();
                 return;
             }
-
-            bool uspesno = viewModel.proxyBeleske.IzmeniBelesku(new Beleska()
+            bool uspesno;
+            if (Globals.currentUser.Admin)
             {
-                Id = Int32.Parse(parameters[5].ToString()),
-                Naslov = parameters[0].ToString(),
-                Sadrzaj = parameters[1].ToString(),
-                Grupe = grupe
-            });
+                uspesno = viewModel.proxyBeleske.IzmeniBelesku(new Beleska()
+                {
+                    Id = Int32.Parse(parameters[5].ToString()),
+                    Naslov = parameters[0].ToString(),
+                    Sadrzaj = parameters[1].ToString(),
+                    Grupe = grupe
+                },"admin");
+            }
+            else
+            {
+                uspesno = viewModel.proxyBeleske.IzmeniBelesku(new Beleska()
+                {
+                    Id = Int32.Parse(parameters[5].ToString()),
+                    Naslov = parameters[0].ToString(),
+                    Sadrzaj = parameters[1].ToString()
+                },"regular");
+            }
+            
 
             if (uspesno)
             {
@@ -87,7 +100,11 @@ namespace Client.Command
                 viewModel.view.Close();
                 viewModel.homeVM.RefreshBeleske();
             }
-            else MessageBox.Show("Beleska neuspesno izmenjena", "Neuspeh");
+            else {
+                MessageBox.Show("Beleska nije ni menjana");
+                viewModel.view.Close();
+                viewModel.homeVM.RefreshBeleske();
+            }
         }
 
         public override void UnExecute()

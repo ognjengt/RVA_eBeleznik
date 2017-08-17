@@ -21,7 +21,7 @@ namespace Common.Interfaces
         Beleska GetBeleskaById(int id);
 
         [OperationContract]
-        bool IzmeniBelesku(Beleska b);
+        bool IzmeniBelesku(Beleska b, string userType);
 
         [OperationContract]
         bool ObrisiBelesku(int id);

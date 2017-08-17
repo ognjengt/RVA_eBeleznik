@@ -19,7 +19,26 @@ namespace Client.Command
         }
         public override void Execute(object parameter)
         {
-            bool uspesno = viewModel.viewModel.homeVM.proxyBeleske.IzmeniBelesku(viewModel.viewModel.BeleskaZaIzmenu);
+            bool uspesno;
+
+            if (Globals.currentUser.Admin)
+            {
+                uspesno = viewModel.viewModel.homeVM.proxyBeleske.IzmeniBelesku(new Beleska()
+                {
+                    Id = viewModel.viewModel.BeleskaZaIzmenu.Id,
+                    Naslov = viewModel.viewModel.BeleskaZaIzmenu.Naslov,
+                    Sadrzaj = viewModel.viewModel.BeleskaZaIzmenu.Sadrzaj
+                },"admin");
+            }
+            else
+            {
+                uspesno = viewModel.viewModel.homeVM.proxyBeleske.IzmeniBelesku(new Beleska()
+                {
+                    Id = viewModel.viewModel.BeleskaZaIzmenu.Id,
+                    Naslov = viewModel.viewModel.BeleskaZaIzmenu.Naslov,
+                    Sadrzaj = viewModel.viewModel.BeleskaZaIzmenu.Sadrzaj
+                }, "regular");
+            }
             if (uspesno)
             {
                 MessageBox.Show("Uspesno pregazene izmene", "Uspeh");

@@ -60,7 +60,6 @@ namespace Client.ViewModel
             prvobitnaBeleska.Id = BeleskaZaIzmenu.Id;
             prvobitnaBeleska.Naslov = BeleskaZaIzmenu.Naslov;
             prvobitnaBeleska.Sadrzaj = BeleskaZaIzmenu.Sadrzaj;
-            prvobitnaBeleska.Grupe = BeleskaZaIzmenu.Grupe;
 
             // Checkovanje
             if (BeleskaZaIzmenu.Grupe.Contains("Sport"))

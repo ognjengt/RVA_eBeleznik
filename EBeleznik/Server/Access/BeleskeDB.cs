@@ -99,14 +99,18 @@ namespace Server.Access
             return listaZaVracanje;
         }
 
-        public bool IzmeniBelesku(Beleska b)
+        public bool IzmeniBelesku(Beleska b, string userType)
         {
             using (var access = new AccessDB())
             {
                 Beleska bel = access.Beleske.First(x => x.Id == b.Id);
                 bel.Naslov = b.Naslov;
                 bel.Sadrzaj = b.Sadrzaj;
-                bel.Grupe = b.Grupe;
+                if (userType == "admin")
+                {
+                    bel.Grupe = b.Grupe;
+                }
+                
                 int i = access.SaveChanges();
 
                 return (i > 0 ? true : false);
