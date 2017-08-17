@@ -48,6 +48,15 @@ namespace Server.Access
             }
         }
 
+        public List<Beleska> GetAllBeleske()
+        {
+            using (var access = new AccessDB())
+            {
+                var beleske = access.Beleske;
+                return (List<Beleska>)beleske.ToList();
+            }
+        }
+
         public Beleska GetBeleskaById(int id)
         {
             using (var access = new AccessDB())
@@ -108,12 +117,24 @@ namespace Server.Access
         {
             using (var access = new AccessDB())
             {
-                var beleska = new Beleska { Id = id };
-                access.Beleske.Attach(beleska);
-                access.Beleske.Remove(beleska);
-                int success = access.SaveChanges();
+                var beleske = access.Beleske;
 
-                return (success > 0 ? true : false);
+                foreach (var item in beleske)
+                {
+                    if (item.Id == id)
+                    {
+                        access.Beleske.Remove(item);
+                        break;
+                    }
+                }
+
+                int i = access.SaveChanges();
+                if (i > 0)
+                {
+                    return true;
+                }
+                else
+                    return false;
             }
         }
     }

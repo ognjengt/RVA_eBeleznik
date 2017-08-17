@@ -1,26 +1,25 @@
 ﻿using Client.ViewModel;
+using Common;
+using Common.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Common.Data;
 using System.Windows;
 
 namespace Client.Command
 {
-    class AddNewUserCommand : ClientCommand
+    public class EditUserGroupsCommand : ClientCommand
     {
-        private AddNewUserVM viewModel;
-
-        public AddNewUserCommand(AddNewUserVM viewModel)
+        private EditGroupsVM viewModel;
+        public EditUserGroupsCommand(EditGroupsVM viewModel)
         {
             this.viewModel = viewModel;
         }
 
         public override void Execute(object parameter)
         {
-            
             if (parameter == null ||
                 !(parameter is Object[]))
             {
@@ -29,12 +28,12 @@ namespace Client.Command
             }
 
             Object[] parameters = parameter as Object[];
-            if (parameters == null || parameters.Length != 7)
+            if (parameters == null || parameters.Length != 3)
             {
                 MessageBox.Show("Uneti parametri nisu validni", "Neuspeh");
                 return;
-            } 
-                
+            }
+
 
             foreach (var v in parameters)
             {
@@ -45,7 +44,7 @@ namespace Client.Command
                 }
             }
 
-            if ((bool)parameters[4] == false && (bool)parameters[5] == false && (bool)parameters[6] == false)
+            if ((bool)parameters[0] == false && (bool)parameters[1] == false && (bool)parameters[2] == false)
             {
                 MessageBox.Show("Odaberite grupu", "Odaberite grupu");
                 return;
@@ -53,39 +52,32 @@ namespace Client.Command
 
             string grupe = "nijedna";
 
-            if ((bool)parameters[4] == true)
+            if ((bool)parameters[0] == true)
             {
                 grupe += ";Sport";
             }
-            if ((bool)parameters[5] == true)
+            if ((bool)parameters[1] == true)
             {
                 grupe += ";Nauka";
             }
-            if ((bool)parameters[6] == true)
+            if ((bool)parameters[2] == true)
             {
                 grupe += ";Programiranje";
             }
 
-            bool success = viewModel.proxyKorisnik.AddUser(new User()
+
+            string selektovanKorisnik = viewModel.Selektovan;
+            bool success = viewModel.proxyKorisnik.PromeniGrupe(new User()
             {
-                Username = parameters[0].ToString(),
-                Ime = parameters[1].ToString(),
-                Prezime = parameters[2].ToString(),
-                Password = parameters[3].ToString(),
-                Admin = false,
+                Username = selektovanKorisnik,
                 Grupe = grupe
             });
 
             if (success)
             {
-                MessageBox.Show("Uspesno dodat korisnik " + parameters[0].ToString(), "Uspeh");
+                MessageBox.Show("Korisnik uspesno izmenjen", "Uspeh");
                 viewModel.view.Close();
             }
-            else
-            {
-                MessageBox.Show("Korisnik sa ovim username-om vec postoji", "Neuspeh");
-                return;
-            } 
         }
     }
 }

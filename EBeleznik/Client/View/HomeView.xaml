@@ -5,33 +5,57 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Client.View"
         xmlns:view="clr-namespace:Client.View"
+        xmlns:converter="clr-namespace:Client.Converter"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         mc:Ignorable="d"
-        Title="EBeleznik" Height="600" Width="500">
+        Title="EBeleznik" Height="676.895" Width="500">
+
+    <Window.Resources>
+        <converter:MultiCloneConverter x:Key="multiCloner"/>
+    </Window.Resources>
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="28*"/>
-            <ColumnDefinition Width="45*"/>
+            <ColumnDefinition Width="189*"/>
+            <ColumnDefinition Width="214*"/>
+            <ColumnDefinition Width="89*"/>
         </Grid.ColumnDefinitions>
         <Button x:Name="button" Command="{Binding openAddNewBeleskaDialogCommand}" Content="Nova beleska" HorizontalAlignment="Left" Margin="31,143,0,0" VerticalAlignment="Top" Width="98" Height="25"/>
         <Label x:Name="label" FontSize="25" FontWeight="Bold" Content="EBeleznik" HorizontalAlignment="Left" Margin="188,10,0,0" VerticalAlignment="Top" Height="43" Width="129" Grid.ColumnSpan="2"/>
         <Button x:Name="button_Copy" Command="{Binding deleteBeleskaCommand}" Content="Obrisi belesku" HorizontalAlignment="Left" Margin="142,143,0,0" VerticalAlignment="Top" Width="98" Height="25" Grid.ColumnSpan="2"/>
         <Button x:Name="button_Copy1" Command="{Binding openEditBeleskaDialogCommand}" Content="Izmeni belesku" HorizontalAlignment="Left" Margin="64,143,0,0" VerticalAlignment="Top" Width="98" Height="25" Grid.Column="1"/>
-        <Button x:Name="button_Copy2" Command="{Binding cloneBeleskaCommand}" Content="Dupliraj belesku" HorizontalAlignment="Left" Margin="175,143,0,0" VerticalAlignment="Top" Width="98" Height="25" Grid.Column="1"/>
+        <Button x:Name="button_Copy2" Command="{Binding cloneBeleskaCommand}" Content="Dupliraj belesku" HorizontalAlignment="Left" Margin="175,143,0,0" VerticalAlignment="Top" Width="98" Height="25" Grid.Column="1" Grid.ColumnSpan="2"/>
         <Button x:Name="button_Copy3" Command="{Binding undoCommand}" Content="Undo" HorizontalAlignment="Left" Margin="31,181,0,0" VerticalAlignment="Top" Width="98" Height="25"/>
         <Button x:Name="button_Copy4" Command="{Binding redoCommand}" Content="Redo" HorizontalAlignment="Left" Margin="142,181,0,0" VerticalAlignment="Top" Width="98" Height="25" Grid.ColumnSpan="2"/>
         <Label x:Name="label1" Content="{Binding Path=usernameText}" HorizontalAlignment="Left" Margin="10,66,0,0" VerticalAlignment="Top" Grid.Column="1"/>
         <Button x:Name="button1" Command="{Binding openEditUserCommand}" Content="Izmeni podatke" HorizontalAlignment="Left" Margin="188,95,0,0" VerticalAlignment="Top" Width="129" Grid.ColumnSpan="2"/>
         <Button x:Name="button_Copy5" Visibility="{Binding Path=showIfAdmin}" Command="{Binding openAddNewUserDialogCommand}" Content="Dodaj korisnika" HorizontalAlignment="Left" Margin="64,181,0,0" VerticalAlignment="Top" Width="98" Height="25" Grid.Column="1"/>
-        <Button Command="{Binding openEditGroupsCommand}" x:Name="button_Copy6" Visibility="{Binding Path=showIfAdmin}" Content="Izmeni grupe" HorizontalAlignment="Left" Margin="175,181,0,0" VerticalAlignment="Top" Width="98" Height="25" Grid.Column="1"/>
-        <ListBox x:Name="listBox" SelectedValue="{Binding Path=Selektovana}" ItemsSource="{Binding Path=ListaNazivaBeleski, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="268" Margin="31,250,0,0" VerticalAlignment="Top" Width="431" Grid.ColumnSpan="2">
+        <Button Command="{Binding openEditGroupsCommand}" x:Name="button_Copy6" Visibility="{Binding Path=showIfAdmin}" Content="Izmeni grupe" HorizontalAlignment="Left" Margin="175,181,0,0" VerticalAlignment="Top" Width="98" Height="25" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <ListBox x:Name="listBox" SelectedValue="{Binding Path=Selektovana}" ItemsSource="{Binding Path=ListaNazivaBeleski, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="268" Margin="31,356,0,0" VerticalAlignment="Top" Width="431" Grid.ColumnSpan="3">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseDoubleClick">
                     <i:InvokeCommandAction Command="{Binding openEditBeleskaDialogCommand}"/>
                 </i:EventTrigger>
             </i:Interaction.Triggers>
         </ListBox>
+        <Label x:Name="label2" Content="Pretraga" HorizontalAlignment="Left" Margin="31,252,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="button_Copy7" Content="Osvezi" HorizontalAlignment="Left" Margin="31,222,0,0" VerticalAlignment="Top" Width="98" Height="25"/>
+        <TextBox x:Name="tbSearchNaslov" HorizontalAlignment="Left" Height="23" Margin="82,286,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="178" Grid.ColumnSpan="2"/>
+        <Label x:Name="label3" Content="Naslov" HorizontalAlignment="Left" Margin="31,283,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="cbSport" Content="Sport" HorizontalAlignment="Left" Margin="82,325,0,0" VerticalAlignment="Top" Height="20" Width="75"/>
+        <Label x:Name="label4" Content="Grupe" HorizontalAlignment="Left" Margin="34,319,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="cbNauka" Content="Nauka" HorizontalAlignment="Left" Margin="142,325,0,0" VerticalAlignment="Top" Height="20" Width="75" Grid.ColumnSpan="2"/>
+        <CheckBox x:Name="cbProgramiranje" Content="Programiranje" HorizontalAlignment="Left" Margin="17,324,0,0" VerticalAlignment="Top" Height="20" Width="100" Grid.Column="1"/>
+        <Button x:Name="button2" Command="{Binding searchCommand}" Content="Pretrazi" Grid.Column="1" HorizontalAlignment="Left" Margin="87,286,0,0" VerticalAlignment="Top" Width="75">
+            <Button.CommandParameter>
+                <MultiBinding Converter="{StaticResource multiCloner}">
+                    <Binding Path="Text" ElementName="tbSearchNaslov"/>
+                    <Binding Path="IsChecked" ElementName="cbSport"/>
+                    <Binding Path="IsChecked" ElementName="cbNauka"/>
+                    <Binding Path="IsChecked" ElementName="cbProgramiranje"/>
+                </MultiBinding>
+            </Button.CommandParameter>
+        </Button>
 
 
     </Grid>

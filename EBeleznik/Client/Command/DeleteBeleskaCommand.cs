@@ -12,7 +12,7 @@ namespace Client.Command
 {
     public class DeleteBeleskaCommand : BeleskaCommand
     {
-        private HomeVM viewModel;
+        public HomeVM viewModel;
         private Beleska beleskaZaBrisanje;
         public DeleteBeleskaCommand(HomeVM homevm)
         {
@@ -23,14 +23,20 @@ namespace Client.Command
         {
             int id = Int32.Parse(viewModel.Selektovana.Split('-')[0]);
             beleskaZaBrisanje = viewModel.proxyBeleske.GetBeleskaById(id);
+            //Globals.listaObrisanih.Add(beleskaZaBrisanje);
             viewModel.proxyBeleske.ObrisiBelesku(id);
             viewModel.RefreshBeleske();
-
+            viewModel.UndoHistory.Add(this);
+            Globals.listaBeleskiUndo.Add(beleskaZaBrisanje);
         }
 
         public override void UnExecute()
         {
-            
+            // Add Command
+            viewModel.proxyBeleske.DodajBelesku(Globals.listaBeleskiUndo[Globals.listaBeleskiUndo.Count - 1]);
+            viewModel.RefreshBeleske();
+            viewModel.RedoHistory.Add(this);
+            Globals.listaBeleskiRedo.Add(beleskaZaBrisanje);
         }
     }
 }

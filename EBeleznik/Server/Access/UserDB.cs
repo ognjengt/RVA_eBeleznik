@@ -82,5 +82,26 @@ namespace Server.Access
                 return (i > 0 ? true : false);
             }
         }
+
+        public List<User> GetAllUsers()
+        {
+            using (var access = new AccessDB())
+            {
+                var users = access.Users;
+                return (List<User>)users.ToList();
+            }
+        }
+
+        public bool PromeniGrupe(User u)
+        {
+            using (var access = new AccessDB())
+            {
+                User user = access.Users.First(x => x.Username == u.Username);
+                user.Grupe = u.Grupe;
+                int i = access.SaveChanges();
+
+                return (i > 0 ? true : false);
+            }
+        }
     }
 }

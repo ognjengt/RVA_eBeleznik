@@ -19,5 +19,11 @@ namespace Common.Interfaces
 
         [OperationContract]
         bool UpdateUser(User u);
+
+        [OperationContract]
+        List<User> GetAllUsers();
+
+        [OperationContract]
+        bool PromeniGrupe(User u);
     }
 }

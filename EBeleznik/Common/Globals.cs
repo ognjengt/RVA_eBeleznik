@@ -12,5 +12,6 @@ namespace Common
         public static User currentUser = new User();
         public static List<Beleska> listaBeleskiUndo = new List<Beleska>();
         public static List<Beleska> listaBeleskiRedo = new List<Beleska>();
+        //public static List<Beleska> listaObrisanih = new List<Beleska>();
     }
 }

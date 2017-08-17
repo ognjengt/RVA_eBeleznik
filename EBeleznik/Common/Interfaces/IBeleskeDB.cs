@@ -25,5 +25,8 @@ namespace Common.Interfaces
 
         [OperationContract]
         bool ObrisiBelesku(int id);
+
+        [OperationContract]
+        List<Beleska> GetAllBeleske();
     }
 }

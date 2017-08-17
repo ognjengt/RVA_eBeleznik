@@ -1,5 +1,6 @@
 ﻿using Client.ViewModel;
 using Common;
+using Common.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,9 +33,20 @@ namespace Client.Command
                 parametri[2] = true;
                 parametri[3] = false;
                 parametri[4] = true;
+                //if (beleskaCommand.GetType() == typeof(DeleteBeleskaCommand))
+                //{
+                //    DeleteBeleskaCommand db = beleskaCommand as DeleteBeleskaCommand;
+                //    db.viewModel.Selektovana = Globals.listaBeleskiRedo[Globals.listaBeleskiRedo.Count - 1].Id + "-stagoddalje";
+                //    beleskaCommand.Execute(parametri);
+                //    viewModel.RedoHistory.Remove(beleskaCommand);
+                //    Globals.listaBeleskiRedo.RemoveAt(Globals.listaBeleskiRedo.Count - 1);
+                //    viewModel.RefreshBeleske();
+                //    return;
+                //}
                 beleskaCommand.Execute(parametri);
                 viewModel.RedoHistory.Remove(beleskaCommand);
                 Globals.listaBeleskiRedo.RemoveAt(Globals.listaBeleskiRedo.Count - 1);
+                viewModel.RefreshBeleske();
             }
         }
 

@@ -38,6 +38,7 @@ namespace Client.ViewModel
         public CloneBeleskaCommand cloneBeleskaCommand { get; set; }
         public UndoCommand undoCommand { get; set; }
         public RedoCommand redoCommand { get; set; }
+        public SearchBeleskeCommand searchCommand { get; set; }
 
         public void OnPropertyChanged(PropertyChangedEventArgs e)
         {
@@ -76,6 +77,7 @@ namespace Client.ViewModel
             this.cloneBeleskaCommand = new CloneBeleskaCommand(this);
             this.undoCommand = new UndoCommand(this);
             this.redoCommand = new RedoCommand(this);
+            this.searchCommand = new SearchBeleskeCommand(this);
 
             this.RedoHistory = new List<BeleskaCommand>();
             this.UndoHistory = new List<BeleskaCommand>();

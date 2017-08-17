@@ -4,10 +4,30 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Client.View"
+        xmlns:converter="clr-namespace:Client.Converter"
         mc:Ignorable="d"
         Title="EditGroupsView" Height="323.78" Width="340.244">
+
+    <Window.Resources>
+        <converter:MultiCloneConverter x:Key="multiCloner"/>
+    </Window.Resources>
+    
     <Grid>
         <Label x:Name="label" Content="Izmena grupa" FontWeight="Bold" FontSize="20" HorizontalAlignment="Left" Margin="93,10,0,0" VerticalAlignment="Top"/>
+        <ListBox x:Name="listBox" SelectedValue="{Binding Path=Selektovan}" ItemsSource="{Binding Path=ListaKorisnika, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="80" Margin="27,86,0,0" VerticalAlignment="Top" Width="281"/>
+        <Label x:Name="label1" Content="Korisnik" HorizontalAlignment="Left" Margin="27,55,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="cbSport" Content="Sport" HorizontalAlignment="Left" Margin="27,195,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="cbNauka" Content="Nauka" HorizontalAlignment="Left" Margin="117,195,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="cbProgramiranje" Content="Programiranje" HorizontalAlignment="Left" Margin="213,195,0,0" VerticalAlignment="Top"/>
+        <Button Command="{Binding editUserGroupsCommand}" x:Name="button" Content="Promeni" HorizontalAlignment="Left" Margin="233,247,0,0" VerticalAlignment="Top" Width="75">
+            <Button.CommandParameter>
+                <MultiBinding Converter="{StaticResource multiCloner}">
+                    <Binding Path="IsChecked" ElementName="cbSport"/>
+                    <Binding Path="IsChecked" ElementName="cbNauka"/>
+                    <Binding Path="IsChecked" ElementName="cbProgramiranje"/>
+                </MultiBinding>
+            </Button.CommandParameter>
+        </Button>
 
     </Grid>
 </Window>
