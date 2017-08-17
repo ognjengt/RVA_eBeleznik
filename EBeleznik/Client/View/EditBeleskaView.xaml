@@ -18,10 +18,10 @@
         <TextBox x:Name="tbNaslov" Text="{Binding BeleskaZaIzmenu.Naslov}" HorizontalAlignment="Left" Height="23" Margin="35,158,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="352"/>
         <Label x:Name="label2" Content="Sadrzaj" HorizontalAlignment="Left" Margin="35,193,0,0" VerticalAlignment="Top"/>
         <toolkit:RichTextBox Text="{Binding BeleskaZaIzmenu.Sadrzaj, Mode=TwoWay}" x:Name="richTextBox" HorizontalAlignment="Left" Height="111" Margin="33,224,0,0" VerticalAlignment="Top" Width="354" RenderTransformOrigin="0.479,0.507"/>
-        <CheckBox x:Name="cbSport" IsChecked="{Binding sportChecked}" IsEnabled="{Binding sportEnabled}" Content="Sport" HorizontalAlignment="Left" Margin="35,389,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="label3" Content="Grupe" HorizontalAlignment="Left" Margin="33,347,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="cbNauka" IsChecked="{Binding naukaChecked}" IsEnabled="{Binding naukaEnabled}" Content="Nauka" HorizontalAlignment="Left" Margin="137,389,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="cbProgramiranje" IsChecked="{Binding programiranjeChecked}" IsEnabled="{Binding programiranjeEnabled}" Content="Programiranje" HorizontalAlignment="Left" Margin="234,389,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="cbSport" Visibility="{Binding ifAdmin}" IsChecked="{Binding sportChecked}" IsEnabled="{Binding sportEnabled}" Content="Sport" HorizontalAlignment="Left" Margin="35,389,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label3" Visibility="{Binding ifAdmin}" Content="Grupe" HorizontalAlignment="Left" Margin="33,347,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="cbNauka" Visibility="{Binding ifAdmin}" IsChecked="{Binding naukaChecked}" IsEnabled="{Binding naukaEnabled}" Content="Nauka" HorizontalAlignment="Left" Margin="137,389,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="cbProgramiranje" Visibility="{Binding ifAdmin}" IsChecked="{Binding programiranjeChecked}" IsEnabled="{Binding programiranjeEnabled}" Content="Programiranje" HorizontalAlignment="Left" Margin="234,389,0,0" VerticalAlignment="Top"/>
         <Button x:Name="button" Command="{Binding editBeleskaCommand}" Content="Izmeni belesku" HorizontalAlignment="Left" Margin="291,431,0,0" VerticalAlignment="Top" Width="96">
             <Button.CommandParameter>
                 <MultiBinding Converter="{StaticResource multiCloner}">

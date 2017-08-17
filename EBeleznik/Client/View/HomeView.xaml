@@ -39,7 +39,7 @@
             </i:Interaction.Triggers>
         </ListBox>
         <Label x:Name="label2" Content="Pretraga" HorizontalAlignment="Left" Margin="31,252,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="button_Copy7" Content="Osvezi" HorizontalAlignment="Left" Margin="31,222,0,0" VerticalAlignment="Top" Width="98" Height="25"/>
+        <Button x:Name="button_Copy7" Command="{Binding refreshCommand}" Content="Osvezi" HorizontalAlignment="Left" Margin="31,222,0,0" VerticalAlignment="Top" Width="98" Height="25"/>
         <TextBox x:Name="tbSearchNaslov" HorizontalAlignment="Left" Height="23" Margin="82,286,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="178" Grid.ColumnSpan="2"/>
         <Label x:Name="label3" Content="Naslov" HorizontalAlignment="Left" Margin="31,283,0,0" VerticalAlignment="Top"/>
         <CheckBox x:Name="cbSport" Content="Sport" HorizontalAlignment="Left" Margin="82,325,0,0" VerticalAlignment="Top" Height="20" Width="75"/>

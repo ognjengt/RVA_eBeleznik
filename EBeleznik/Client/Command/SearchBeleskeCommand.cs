@@ -19,7 +19,6 @@ namespace Client.Command
         }
         public override void Execute(object parameter)
         {
-
             Object[] parameters = parameter as Object[];
 
             if ((parameters[0] == null || parameters[0] == "") && (bool)parameters[1] == false && (bool)parameters[2] == false && (bool)parameters[3] ==false)
@@ -32,7 +31,6 @@ namespace Client.Command
             List<Beleska> listaFiltriranih = new List<Beleska>();
             if ((bool)parameters[1] == false && (bool)parameters[2] == false && (bool)parameters[3] == false)
             {
-                // samo filtriraj po nazivu
                 listaFiltriranih = listaSvih.Where(x => x.Naslov.Contains(parameters[0].ToString())).ToList();
             }
             else if ((parameters[0] == null || parameters[0] == ""))
@@ -74,7 +72,6 @@ namespace Client.Command
             }
             viewModel.ListaNazivaBeleski = listaZaIspis;
             viewModel.OnPropertyChanged(new PropertyChangedEventArgs("ListaNazivaBeleski"));
-            // ubaci na viewModel listu i pozovi on propertyChanged
 
         }
 

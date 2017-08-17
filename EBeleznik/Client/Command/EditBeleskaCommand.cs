@@ -1,4 +1,6 @@
-﻿using Client.ViewModel;
+﻿using Client.View;
+using Client.ViewModel;
+using Common;
 using Common.Data;
 using System;
 using System.Collections.Generic;
@@ -9,7 +11,7 @@ using System.Windows;
 
 namespace Client.Command
 {
-    class EditBeleskaCommand : BeleskaCommand
+    public class EditBeleskaCommand : BeleskaCommand
     {
         private EditBeleskaVM viewModel;
         public EditBeleskaCommand(EditBeleskaVM viewModel)
@@ -60,6 +62,15 @@ namespace Client.Command
             if ((bool)parameters[4] == true)
             {
                 grupe += ";Programiranje";
+            }
+
+            // Proveri u bazi da li je izmenjena
+            Beleska beleskaZaPoklapanje = viewModel.proxyBeleske.GetBeleskaById(viewModel.prvobitnaBeleska.Id);
+            if (beleskaZaPoklapanje.Naslov != viewModel.prvobitnaBeleska.Naslov || beleskaZaPoklapanje.Sadrzaj != viewModel.prvobitnaBeleska.Sadrzaj || beleskaZaPoklapanje.Grupe != viewModel.prvobitnaBeleska.Grupe)
+            {
+                ConflictView conflictV = new ConflictView(viewModel);
+                conflictV.ShowDialog();
+                return;
             }
 
             bool uspesno = viewModel.proxyBeleske.IzmeniBelesku(new Beleska()

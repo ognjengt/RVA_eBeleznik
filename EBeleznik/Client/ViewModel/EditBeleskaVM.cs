@@ -13,16 +13,18 @@ using System.Threading.Tasks;
 
 namespace Client.ViewModel
 {
-    class EditBeleskaVM : INotifyPropertyChanged
+    public class EditBeleskaVM : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
         public EditBeleskaCommand editBeleskaCommand { get; set; }
+        public string ifAdmin { get; set; }
 
         public EditBeleskaView view;
         public HomeVM homeVM;
         private int Id;
         public Beleska BeleskaZaIzmenu { get; set; }
+        public Beleska prvobitnaBeleska { get; set; }
 
         public string sportEnabled { get; set; }
         public string naukaEnabled { get; set; }
@@ -39,6 +41,11 @@ namespace Client.ViewModel
             this.editBeleskaCommand = new EditBeleskaCommand(this);
             this.view = view;
             this.homeVM = homeVM;
+            if (Globals.currentUser.Admin)
+            {
+                ifAdmin = "Visible";
+            }
+            else ifAdmin = "Hidden";
 
             Id = Int32.Parse(homeVM.Selektovana.Split('-')[0]);
 
@@ -47,7 +54,14 @@ namespace Client.ViewModel
             ChannelFactory<IBeleskeDB> factory = new ChannelFactory<IBeleskeDB>(binding, new EndpointAddress("net.tcp://localhost:50001/BeleskeConnection"));
             proxyBeleske = factory.CreateChannel();
 
+            prvobitnaBeleska = new Beleska();
+
             BeleskaZaIzmenu = proxyBeleske.GetBeleskaById(Id);
+            prvobitnaBeleska.Id = BeleskaZaIzmenu.Id;
+            prvobitnaBeleska.Naslov = BeleskaZaIzmenu.Naslov;
+            prvobitnaBeleska.Sadrzaj = BeleskaZaIzmenu.Sadrzaj;
+            prvobitnaBeleska.Grupe = BeleskaZaIzmenu.Grupe;
+
             // Checkovanje
             if (BeleskaZaIzmenu.Grupe.Contains("Sport"))
             {
