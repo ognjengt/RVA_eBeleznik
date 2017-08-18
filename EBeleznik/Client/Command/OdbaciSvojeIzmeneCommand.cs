@@ -20,10 +20,5 @@ namespace Client.Command
             conflictVM.viewModel.view.Close();
             conflictVM.viewModel.homeVM.RefreshBeleske();
         }
-
-        public override void UnExecute()
-        {
-            
-        }
     }
 }

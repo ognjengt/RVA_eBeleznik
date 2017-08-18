@@ -18,6 +18,12 @@ namespace Client.Command
         }
         public override void Execute(object parameter)
         {
+            if (viewModel.Selektovana == null || viewModel.Selektovana == "")
+            {
+                MessageBox.Show("Selektujte belesku za kloniranje");
+                return;
+            }
+
             int id = Int32.Parse(viewModel.Selektovana.Split('-')[0]);
             Beleska b = viewModel.proxyBeleske.GetBeleskaById(id);
             Beleska clone = b.Clone();

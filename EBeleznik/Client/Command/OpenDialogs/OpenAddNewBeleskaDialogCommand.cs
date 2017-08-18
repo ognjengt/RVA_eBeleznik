@@ -20,10 +20,5 @@ namespace Client.Command.OpenDialogs
             AddNewBeleskaView v = new AddNewBeleskaView(caller);
             v.ShowDialog();
         }
-
-        public override void UnExecute()
-        {
-            
-        }
     }
 }

@@ -18,6 +18,6 @@ namespace Client.Command
 
         public abstract void Execute(object parameter);
 
-        public abstract void UnExecute();
+        public virtual void UnExecute() { }
     }
 }

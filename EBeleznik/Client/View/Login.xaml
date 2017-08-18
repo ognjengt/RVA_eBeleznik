@@ -16,12 +16,12 @@
         <Label x:Name="label" Content="Username" HorizontalAlignment="Left" Margin="39,53,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="tbUsername" HorizontalAlignment="Left" Height="23" Margin="39,84,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="222"/>
         <Label x:Name="label1" Content="Password" HorizontalAlignment="Left" Margin="39,135,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbPassword" HorizontalAlignment="Left" Height="23" Margin="39,166,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="222"/>
+        <PasswordBox x:Name="tbPassword" HorizontalAlignment="Left" Height="23" Margin="39,166,0,0" VerticalAlignment="Top" Width="222"/>
         <Button x:Name="btnLogin" Content="Login" HorizontalAlignment="Left" Margin="39,217,0,0" VerticalAlignment="Top" Width="75" Command="{Binding loginCommand}">
             <Button.CommandParameter>
                 <MultiBinding Converter="{StaticResource multiCloner}">
                 <Binding Path="Text" ElementName="tbUsername"/>
-                <Binding Path="Text" ElementName="tbPassword"/>
+                <Binding Path="." ElementName="tbPassword"/>
                 </MultiBinding>
             </Button.CommandParameter>
         </Button>

@@ -18,10 +18,5 @@ namespace Client.Command
         {
             viewModel.RefreshBeleske();
         }
-
-        public override void UnExecute()
-        {
-            
-        }
     }
 }

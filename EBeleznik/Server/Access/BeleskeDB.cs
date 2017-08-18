@@ -38,10 +38,9 @@ namespace Server.Access
                 access.Beleske.Add(newBeleska);
                 int uspesno = access.SaveChanges();
 
-                List<Beleska> lista = beleske.ToList();
                 if (uspesno > 0)
                 {
-                    return lista[lista.Count - 1];
+                    return newBeleska;
                 }
                 else return null;
                 

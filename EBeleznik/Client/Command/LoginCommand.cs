@@ -11,6 +11,7 @@ using Common;
 using Common.Interfaces;
 using Common.Data;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace Client.Command
 {
@@ -40,7 +41,8 @@ namespace Client.Command
             }
 
             string username = parameters[0].ToString();
-            string password = parameters[1].ToString();
+            PasswordBox passwordBox = parameters[1] as PasswordBox;
+            string password = passwordBox.Password;
 
             User korisnik = viewModel.proxyKorisnik.UlogujKorisnika(username, password);
 

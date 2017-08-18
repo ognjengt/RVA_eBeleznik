@@ -32,11 +32,6 @@ namespace Client.Command
             }
 
             Object[] parameters = parameter as Object[];
-            //if (parameters == null || parameters.Length != 5)
-            //{
-            //    MessageBox.Show("Uneti parametri nisu validni", "Neuspeh");
-            //    return;
-            //}
 
 
             foreach (var v in parameters)

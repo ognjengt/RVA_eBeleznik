@@ -53,10 +53,5 @@ namespace Client.Command
                 viewModel.viewModel.homeVM.RefreshBeleske();
             }
         }
-
-        public override void UnExecute()
-        {
-            
-        }
     }
 }

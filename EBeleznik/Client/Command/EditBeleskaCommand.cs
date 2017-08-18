@@ -20,6 +20,7 @@ namespace Client.Command
         }
         public override void Execute(object parameter)
         {
+
             if (parameter == null ||
                 !(parameter is Object[]))
             {
@@ -64,12 +65,21 @@ namespace Client.Command
                 grupe += ";Programiranje";
             }
 
-            // Proveri u bazi da li je izmenjena
-            Beleska beleskaZaPoklapanje = viewModel.proxyBeleske.GetBeleskaById(viewModel.prvobitnaBeleska.Id);
-            if (beleskaZaPoklapanje.Naslov != viewModel.prvobitnaBeleska.Naslov || beleskaZaPoklapanje.Sadrzaj != viewModel.prvobitnaBeleska.Sadrzaj)
+            try
             {
-                ConflictView conflictV = new ConflictView(viewModel);
-                conflictV.ShowDialog();
+                Beleska beleskaZaPoklapanje = viewModel.proxyBeleske.GetBeleskaById(viewModel.prvobitnaBeleska.Id);
+                if (beleskaZaPoklapanje.Naslov != viewModel.prvobitnaBeleska.Naslov || beleskaZaPoklapanje.Sadrzaj != viewModel.prvobitnaBeleska.Sadrzaj)
+                {
+                    ConflictView conflictV = new ConflictView(viewModel);
+                    conflictV.ShowDialog();
+                    return;
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Beleska je u medjuvremenu obrisana");
+                viewModel.view.Close();
+                viewModel.homeVM.RefreshBeleske();
                 return;
             }
             bool uspesno;
@@ -105,11 +115,6 @@ namespace Client.Command
                 viewModel.view.Close();
                 viewModel.homeVM.RefreshBeleske();
             }
-        }
-
-        public override void UnExecute()
-        {
-            throw new NotImplementedException();
         }
     }
 }

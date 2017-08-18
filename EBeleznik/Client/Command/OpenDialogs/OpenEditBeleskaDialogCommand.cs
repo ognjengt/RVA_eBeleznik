@@ -19,6 +19,11 @@ namespace Client.Command.OpenDialogs
         }
         public override void Execute(object parameter)
         {
+            if (caller.Selektovana == null || caller.Selektovana == "")
+            {
+                MessageBox.Show("Selektujte belesku za izmenu");
+                return;
+            }
             string grupe = caller.Selektovana.Split('-')[1].Split('(')[1];
             grupe = grupe.Substring(0, (grupe.Length - 2));
             string[] listaGrupa = grupe.Split(';');

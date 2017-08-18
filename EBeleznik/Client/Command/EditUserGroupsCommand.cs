@@ -20,6 +20,11 @@ namespace Client.Command
 
         public override void Execute(object parameter)
         {
+            if (viewModel.Selektovan == null || viewModel.Selektovan == "")
+            {
+                MessageBox.Show("Selektujte korisnika za izmenu");
+                return;
+            }
             if (parameter == null ||
                 !(parameter is Object[]))
             {

@@ -30,10 +30,5 @@ namespace Client.Command
                 Globals.listaBeleskiUndo.RemoveAt(Globals.listaBeleskiUndo.Count - 1);
             }
         }
-
-        public override void UnExecute()
-        {
-            
-        }
     }
 }

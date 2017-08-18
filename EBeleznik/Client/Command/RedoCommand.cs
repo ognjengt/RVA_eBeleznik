@@ -26,33 +26,19 @@ namespace Client.Command
             else
             {
                 BeleskaCommand beleskaCommand = viewModel.RedoHistory[viewModel.RedoHistory.Count - 1];
-                Object[] parametri = new Object[5];
+                Object[] parametri = new Object[6];
                 parametri[0] = Globals.listaBeleskiRedo[Globals.listaBeleskiRedo.Count - 1].Naslov;
                 parametri[1] = Globals.listaBeleskiRedo[Globals.listaBeleskiRedo.Count - 1].Sadrzaj;
                 // provera za grupe
                 parametri[2] = true;
                 parametri[3] = false;
                 parametri[4] = true;
-                //if (beleskaCommand.GetType() == typeof(DeleteBeleskaCommand))
-                //{
-                //    DeleteBeleskaCommand db = beleskaCommand as DeleteBeleskaCommand;
-                //    db.viewModel.Selektovana = Globals.listaBeleskiRedo[Globals.listaBeleskiRedo.Count - 1].Id + "-stagoddalje";
-                //    beleskaCommand.Execute(parametri);
-                //    viewModel.RedoHistory.Remove(beleskaCommand);
-                //    Globals.listaBeleskiRedo.RemoveAt(Globals.listaBeleskiRedo.Count - 1);
-                //    viewModel.RefreshBeleske();
-                //    return;
-                //}
+                parametri[5] = Globals.listaBeleskiRedo[Globals.listaBeleskiRedo.Count - 1].Id;
                 beleskaCommand.Execute(parametri);
                 viewModel.RedoHistory.Remove(beleskaCommand);
                 Globals.listaBeleskiRedo.RemoveAt(Globals.listaBeleskiRedo.Count - 1);
                 viewModel.RefreshBeleske();
             }
-        }
-
-        public override void UnExecute()
-        {
-
         }
     }
 }

@@ -21,7 +21,22 @@ namespace Client.Command
         public DeleteBeleskaCommand() { }
         public override void Execute(object parameter)
         {
-            int id = Int32.Parse(viewModel.Selektovana.Split('-')[0]);
+            int id = 0;
+            // provera dalje za parameters[5]
+            if (parameter == null)
+            {
+                if (viewModel.Selektovana == null || viewModel.Selektovana == "")
+                {
+                    MessageBox.Show("Selektujte belesku za brisanje");
+                    return;
+                }
+                id = Int32.Parse(viewModel.Selektovana.Split('-')[0]);
+            }
+            else
+            {
+                Object[] parameters = parameter as Object[];
+                id = Int32.Parse(parameters[5].ToString());
+            }
             beleskaZaBrisanje = viewModel.proxyBeleske.GetBeleskaById(id);
             //Globals.listaObrisanih.Add(beleskaZaBrisanje);
             viewModel.proxyBeleske.ObrisiBelesku(id);
@@ -33,10 +48,10 @@ namespace Client.Command
         public override void UnExecute()
         {
             // Add Command
-            viewModel.proxyBeleske.DodajBelesku(Globals.listaBeleskiUndo[Globals.listaBeleskiUndo.Count - 1]);
+            Beleska dodataBeleska = viewModel.proxyBeleske.DodajBelesku(Globals.listaBeleskiUndo[Globals.listaBeleskiUndo.Count - 1]);
             viewModel.RefreshBeleske();
             viewModel.RedoHistory.Add(this);
-            Globals.listaBeleskiRedo.Add(beleskaZaBrisanje);
+            Globals.listaBeleskiRedo.Add(dodataBeleska);
         }
     }
 }

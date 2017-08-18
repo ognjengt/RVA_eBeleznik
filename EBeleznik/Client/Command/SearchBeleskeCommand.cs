@@ -74,10 +74,5 @@ namespace Client.Command
             viewModel.OnPropertyChanged(new PropertyChangedEventArgs("ListaNazivaBeleski"));
 
         }
-
-        public override void UnExecute()
-        {
-            
-        }
     }
 }
