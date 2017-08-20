@@ -45,6 +45,7 @@ namespace Client.Command
                 }
             }
 
+
             if ((bool)parameters[2] == false && (bool)parameters[3] == false && (bool)parameters[4] == false)
             {
                 MessageBox.Show("Odaberite grupu", "Odaberite grupu");

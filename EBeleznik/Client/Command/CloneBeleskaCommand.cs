@@ -36,10 +36,5 @@ namespace Client.Command
             }
             else MessageBox.Show("Beleska neuspesno klonirana", "Neuspeh");
         }
-
-        public override void UnExecute()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

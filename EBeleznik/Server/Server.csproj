@@ -72,6 +72,7 @@
     <Compile Include="Access\BeleskeDB.cs" />
     <Compile Include="Access\Configuration.cs" />
     <Compile Include="Access\UserDB.cs" />
+    <Compile Include="Locker.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

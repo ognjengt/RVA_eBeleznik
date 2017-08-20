@@ -31,77 +31,97 @@ namespace Server.Access
 
         public User UlogujKorisnika(string username, string password)
         {
-            using(var access = new AccessDB())
+            lock (Locker.lockUser)
             {
-                var users = access.Users;
-
-                foreach (var user in users)
+                using (var access = new AccessDB())
                 {
-                    if (user.Username == username && user.Password == password)
+                    var users = access.Users;
+
+                    foreach (var user in users)
                     {
-                        return user;
+                        if (user.Username == username && user.Password == password)
+                        {
+                            return user;
+                        }
                     }
                 }
+                return null;
             }
-            return null;
+            
         }
 
         public bool AddUser(User newUser)
         {
-            // provera da li taj user vec postoji
-            using (var access = new AccessDB())
+            lock (Locker.lockUser)
             {
-                var users = access.Users;
-                foreach (var user in users)
+                // provera da li taj user vec postoji
+                using (var access = new AccessDB())
                 {
-                    if (user.Username == newUser.Username)
+                    var users = access.Users;
+                    foreach (var user in users)
                     {
-                        return false;
+                        if (user.Username == newUser.Username)
+                        {
+                            return false;
+                        }
                     }
-                }
-                access.Users.Add(newUser);
-                int uspesno = access.SaveChanges();
+                    access.Users.Add(newUser);
+                    int uspesno = access.SaveChanges();
 
-                if (uspesno > 0)
-                {
-                    return true;
+                    if (uspesno > 0)
+                    {
+                        return true;
+                    }
+                    else return false;
                 }
-                else return false;
             }
+            
         }
 
         public bool UpdateUser(User u)
         {
-            using (var access = new AccessDB())
+            lock (Locker.lockUser)
             {
-                User user = access.Users.First(x => x.Username == u.Username);
-                user.Ime = u.Ime;
-                user.Prezime = u.Prezime;
-                int i = access.SaveChanges();
+                using (var access = new AccessDB())
+                {
+                    User user = access.Users.First(x => x.Username == u.Username);
+                    user.Ime = u.Ime;
+                    user.Prezime = u.Prezime;
+                    int i = access.SaveChanges();
 
-                return (i > 0 ? true : false);
+                    return (i > 0 ? true : false);
+                }
             }
+            
         }
 
         public List<User> GetAllUsers()
         {
-            using (var access = new AccessDB())
+            lock (Locker.lockUser)
             {
-                var users = access.Users;
-                return (List<User>)users.ToList();
+                using (var access = new AccessDB())
+                {
+                    var users = access.Users;
+                    return (List<User>)users.ToList();
+                }
             }
+            
         }
 
         public bool PromeniGrupe(User u)
         {
-            using (var access = new AccessDB())
+            lock (Locker.lockUser)
             {
-                User user = access.Users.First(x => x.Username == u.Username);
-                user.Grupe = u.Grupe;
-                int i = access.SaveChanges();
+                using (var access = new AccessDB())
+                {
+                    User user = access.Users.First(x => x.Username == u.Username);
+                    user.Grupe = u.Grupe;
+                    int i = access.SaveChanges();
 
-                return (i > 0 ? true : false);
+                    return (i > 0 ? true : false);
+                }
             }
+            
         }
     }
 }

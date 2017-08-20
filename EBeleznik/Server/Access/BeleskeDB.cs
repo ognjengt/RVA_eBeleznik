@@ -31,114 +31,138 @@ namespace Server.Access
 
         public Beleska DodajBelesku(Beleska newBeleska)
         {
-            using (var access = new AccessDB())
+            lock (Locker.lockBeleska)
             {
-                var beleske = access.Beleske;
-
-                access.Beleske.Add(newBeleska);
-                int uspesno = access.SaveChanges();
-
-                if (uspesno > 0)
+                using (var access = new AccessDB())
                 {
-                    return newBeleska;
+                    var beleske = access.Beleske;
+
+                    access.Beleske.Add(newBeleska);
+                    int uspesno = access.SaveChanges();
+
+                    if (uspesno > 0)
+                    {
+                        return newBeleska;
+                    }
+                    else return null;
+
                 }
-                else return null;
-                
             }
+            
         }
 
         public List<Beleska> GetAllBeleske()
         {
-            using (var access = new AccessDB())
+            lock (Locker.lockBeleska)
             {
-                var beleske = access.Beleske;
-                return (List<Beleska>)beleske.ToList();
+                using (var access = new AccessDB())
+                {
+                    var beleske = access.Beleske;
+                    return (List<Beleska>)beleske.ToList();
+                }
             }
+            
         }
 
         public Beleska GetBeleskaById(int id)
         {
-            using (var access = new AccessDB())
+            lock (Locker.lockBeleska)
             {
-                var beleske = access.Beleske;
-
-                foreach (var beleska in beleske)
+                using (var access = new AccessDB())
                 {
-                    if (beleska.Id == id)
+                    var beleske = access.Beleske;
+
+                    foreach (var beleska in beleske)
                     {
-                        return beleska;
+                        if (beleska.Id == id)
+                        {
+                            return beleska;
+                        }
                     }
                 }
+                return null;
             }
-            return null;
+            
         }
 
         public List<Beleska> GetBeleskeByUser(User user)
         {
-            List<Beleska> listaZaVracanje = new List<Beleska>();
-            string[] korisnickeGrupe = user.Grupe.Split(';');
-            using (var access = new AccessDB())
+            lock (Locker.lockBeleska)
             {
-                var beleske = access.Beleske;
-
-                foreach (var beleska in beleske)
+                List<Beleska> listaZaVracanje = new List<Beleska>();
+                string[] korisnickeGrupe = user.Grupe.Split(';');
+                using (var access = new AccessDB())
                 {
-                    foreach (string grupa in korisnickeGrupe)
+                    var beleske = access.Beleske;
+
+                    foreach (var beleska in beleske)
                     {
-                        if (beleska.Grupe.Contains(grupa))
+                        foreach (string grupa in korisnickeGrupe)
                         {
-                            listaZaVracanje.Add(beleska);
-                            break;
+                            if (beleska.Grupe.Contains(grupa))
+                            {
+                                listaZaVracanje.Add(beleska);
+                                break;
+                            }
                         }
                     }
+
                 }
 
+                return listaZaVracanje;
             }
-
-            return listaZaVracanje;
+            
         }
 
         public bool IzmeniBelesku(Beleska b, string userType)
         {
-            using (var access = new AccessDB())
+            lock (Locker.lockBeleska)
             {
-                Beleska bel = access.Beleske.First(x => x.Id == b.Id);
-                bel.Naslov = b.Naslov;
-                bel.Sadrzaj = b.Sadrzaj;
-                if (userType == "admin")
+                using (var access = new AccessDB())
                 {
-                    bel.Grupe = b.Grupe;
-                }
-                
-                int i = access.SaveChanges();
+                    Beleska bel = access.Beleske.First(x => x.Id == b.Id);
+                    bel.Naslov = b.Naslov;
+                    bel.Sadrzaj = b.Sadrzaj;
+                    if (userType == "admin")
+                    {
+                        bel.Grupe = b.Grupe;
+                    }
 
-                return (i > 0 ? true : false);
+                    int i = access.SaveChanges();
+
+                    return (i > 0 ? true : false);
+                }
             }
+            
         }
 
         public bool ObrisiBelesku(int id)
         {
-            using (var access = new AccessDB())
+            lock (Locker.lockBeleska)
             {
-                var beleske = access.Beleske;
-
-                foreach (var item in beleske)
+                using (var access = new AccessDB())
                 {
-                    if (item.Id == id)
+                    var beleske = access.Beleske;
+
+                    foreach (var item in beleske)
                     {
-                        access.Beleske.Remove(item);
-                        break;
+                        if (item.Id == id)
+                        {
+                            access.Beleske.Remove(item);
+                            break;
+                        }
                     }
-                }
 
-                int i = access.SaveChanges();
-                if (i > 0)
-                {
-                    return true;
+                    int i = access.SaveChanges();
+                    if (i > 0)
+                    {
+                        return true;
+                    }
+                    else
+                        return false;
                 }
-                else
-                    return false;
             }
+            
         }
     }
 }
